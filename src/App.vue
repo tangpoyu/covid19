@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <v-main>
-      <h1>COVID-19 Tracking Dashboard</h1>
+      <h1>COVID-19 Tracking Dashboard of Taiwan</h1>
        <v-row >
               <v-col cols="12" v-if="arrEverydaySuffer.length">
                 <LineChart
@@ -9,8 +9,8 @@
                   :chartData="arrEverydaySuffer"
                   :options="chartOptions"
                   :chartColorOptions="{
-                    borderColor: '	#D1EDF2',
-                    backgroundColor: '#1E90FF',
+                    borderColor: '#FFD700',
+                    backgroundColor: '#FFFFE0',
                    
                   }"
                   
@@ -23,11 +23,12 @@
 
 <style>
 .v-application--wrap{
-  background-color: rgb(255, 255, 255);
+  background-color: rgba(241, 236, 156, 0.445);
 }
 h1{
   color: rgb(0, 0, 0);
-}
+  text-align: center;
+} 
 .row{
   color: aliceblue;
 }
