@@ -6,7 +6,8 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "deploy": "npm run build && node ./deploy/ghpages.js"
+    "start": "node dist/app.js"
+    
   },
   "dependencies": {
     "axios": "^0.22.0",
@@ -14,6 +15,7 @@
     "core-js": "^3.6.5",
     "dayjs": "^1.10.7",
     "echarts": "^5.2.1",
+    "express": "^4.17.1",
     "v-charts": "^1.19.0",
     "vue": "^2.6.11",
     "vue-chartjs": "^3.5.1",
