@@ -92,23 +92,40 @@ export default {
   async created() {
     
     let { data } = await axios.get(
-      'https://covid-19.nchc.org.tw/myDT_staff.php?TB_name=owl_world&limitColumn=a01&limitValue=TW%&equalValue=%20like%20&encodeKey=MTYzMzM1Njc4MA==&c[]=id&t[]=int&d[]=NO&c[]=a01&t[]=varchar&d[]=NO&c[]=a02&t[]=varchar&d[]=NO&c[]=a03&t[]=varchar&d[]=NO&c[]=a04&t[]=date&d[]=NO&c[]=a05&t[]=int&d[]=NO&c[]=a06&t[]=int&d[]=NO&c[]=a07&t[]=decimal&d[]=NO&c[]=a08&t[]=int&d[]=NO&c[]=a09&t[]=int&d[]=NO&c[]=a10&t[]=decimal&d[]=NO&c[]=a11&t[]=decimal&d[]=NO&c[]=a12&t[]=decimal&d[]=NO&c[]=a13&t[]=decimal&d[]=NO&c[]=a14&t[]=int&d[]=NO&c[]=a15&t[]=int&d[]=NO&c[]=a16&t[]=decimal&d[]=NO&c[]=a17&t[]=decimal&d[]=NO&c[]=a18&t[]=decimal&d[]=NO&c[]=a19&t[]=decimal&d[]=NO&c[]=a20&t[]=int&d[]=NO&c[]=a21&t[]=int&d[]=NO&c[]=a22&t[]=int&d[]=NO&c[]=a23&t[]=decimal&d[]=NO&c[]=a24&t[]=decimal&d[]=NO&c[]=a25&t[]=decimal&d[]=NO&c[]=a26&t[]=decimal&d[]=NO&c[]=a27&t[]=int&d[]=NO&c[]=a28&t[]=decimal&d[]=NO&c[]=a29&t[]=decimal&d[]=NO&c[]=a30&t[]=decimal&d[]=NO&c[]=a31&t[]=int&d[]=NO&c[]=a32&t[]=decimal&d[]=NO'
+      'https://server-getdada.herokuapp.com/everydaySuffer'
     )
-    data=data.data.slice(data.data.length-30)
+    this.arrEverydaySuffer = data
+
+    data = await axios.get(
+      'https://server-getdada.herokuapp.com/totalSuffer'
+    )
+    this.arrTotalSuffer=data.data
     
-    data.forEach((item) => {
-      const date=item.a04
-      const{
-      a05,
-      a06,
-      a08,
-      } = item
-      this.arrEverydaySuffer.push({date:date, suffer: a06})
-      this.arrTotalSuffer.push({date:date, suffer: a05})
-      this.arrTotalDeath.push({date:date, suffer: a08})
-    })
     
+    data = await axios.get(
+      'https://server-getdada.herokuapp.com/death'
+    )
+    this.arrTotalDeath=data.data
+    console.log(this.arrTotalSuffer)
+    console.log(this.arrTotalDeath)
     console.log(this.arrEverydaySuffer)
+    // data = await axios.get(
+    //   'https://server-getdada.herokuapp.com/death'
+    // )
+    // this.arrTotalDeath = data
+    // data.forEach((item) => {
+    //   const date=item.a04
+    //   const{
+    //   a05,
+    //   a06,
+    //   a08,
+    //   } = item
+    //   this.arrEverydaySuffer.push({date:date, suffer: a06})
+    //   this.arrTotalSuffer.push({date:date, suffer: a05})
+    //   this.arrTotalDeath.push({date:date, suffer: a08})
+    // })
+    
+    // console.log(this.arrEverydaySuffer)
   },
   computed:{
     renderData() {
